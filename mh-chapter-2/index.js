@@ -8,7 +8,7 @@ if (!process.env.PORT) {
 const PORT = process.env.PORT;
 
 app.get('/', (req, res) => {
-    res.send('Hello there');
+    res.send('Hello there, welcome to the video store');
 });
 
 app.get('/video', (req, res) => {
