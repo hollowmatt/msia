@@ -9,6 +9,9 @@ const port = 3000;
 //     throw new Error("Please specify the port number for the HTTP server with env var PORT.");
 // }
 // const PORT = process.env.PORT;
+app.get("/", (req, res) => {
+    res.redirect('/video');
+});
 
 app.get('/video', (req, res) => {
 
