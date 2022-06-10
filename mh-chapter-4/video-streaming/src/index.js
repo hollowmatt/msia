@@ -19,9 +19,9 @@ const PORT = process.env.PORT;
 //
 // Registers a HTTP GET route for video streaming.
 //
-app.get("/", req, res) => {
+app.get("/", (req, res) => {
     res.redirect('/video');
-}
+});
 
 app.get("/video", (req, res) => {
 
