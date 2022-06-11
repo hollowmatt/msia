@@ -10,8 +10,8 @@ services:
       - "4000:80"
     environment:
       - PORT=80
-      - STORAGE_ACCOUNT_NAME="microserve"
-      - STORAGE_ACCESS_KEY="6ShQFF7H7FsKZmhdsvFo7OVrE0DLQWx/5zc2Nq8m2KYiGppRyWvUOS487K8LsySgAMatGy+2fvL9+AStZHLZMw=="
+      - STORAGE_ACCOUNT_NAME=microserve
+      - STORAGE_ACCESS_KEY=6ShQFF7H7FsKZmhdsvFo7OVrE0DLQWx/5zc2Nq8m2KYiGppRyWvUOS487K8LsySgAMatGy+2fvL9+AStZHLZMw==
     restart: "no"
   video-streaming:
     image: video-streaming
