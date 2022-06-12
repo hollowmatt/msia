@@ -1,0 +1,36 @@
+version: '3'
+services:
+  db:
+    image: mongo:4.2.8
+    container_name: db
+    ports:
+      - "4000:27017"
+    restart: always
+  storage:
+    image: storage
+    build:
+      context: ./storage
+      dockerfile: Dockerfile
+    container_name: video-storage
+    ports:
+      - "4001:80"
+    environment:
+      - PORT=80
+      - STORAGE_ACCOUNT_NAME=microserve
+      - STORAGE_ACCESS_KEY=6ShQFF7H7FsKZmhdsvFo7OVrE0DLQWx/5zc2Nq8m2KYiGppRyWvUOS487K8LsySgAMatGy+2fvL9+AStZHLZMw==
+    restart: "no"
+  video-streaming:
+    image: video-streaming
+    build: 
+      context: ./video-streaming
+      dockerfile: Dockerfile
+    container_name: video-streaming
+    ports:
+     - "4002:80"
+    environment:
+      - PORT=80
+      - DBHOST=mongodb://db:27017
+      - DBNAME=video-streaming
+      - VIDEO_STORAGE_HOST=video-storage
+      - VIDEO_STORAGE_PORT=80
+    restart: "no"
