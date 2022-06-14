@@ -26,7 +26,7 @@ function startHttpServer() {
 // Application entry point.
 //
 function main() {
-    console.log("Hello world!");
+    console.log("Hello computer!");
     
     return startHttpServer();
 }
