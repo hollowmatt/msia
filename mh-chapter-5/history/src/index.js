@@ -3,8 +3,23 @@ const express = require("express");
 //
 // Setup event handlers.
 //
-function setupHandlers(app) {
-    // ... THIS IS A STUB MICROSERVICE: SETUP YOUR HTTP ROUTES HERE ...
+function setupHandlers(app, db) {
+    const videosCollection = db.collection("videos");
+    app.post("/viewed", (req, res) => {
+        const videoPath = req.body.videoPath;
+        videosCollection
+        .insertOne({ videoPath: videoPath })
+            .then(() => {
+                console.log(`Added video ${videoPath} to history.`);
+                res.sendStatus(200);
+            })
+            .catch(err => {
+                console.error(`Error adding video ${videoPath} 
+                ➥ to history.`);
+                console.error(err && err.stack || err);
+                res.sendStatus(500);
+            });
+    });
 }
 
 //
@@ -27,7 +42,6 @@ function startHttpServer() {
 //
 function main() {
     console.log("Hello computer!");
-    
     return startHttpServer();
 }
 

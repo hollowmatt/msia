@@ -41,6 +41,37 @@ function startHttpServer() {
 }
 
 //
+//Send a message to update history
+//
+function sendViewedMessage(videoPath) {
+    const postOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    };
+
+    const requestBody = {
+        videoPath: videoPath
+    };
+
+    const req = http.request(
+        "http://history/viewed",
+        postOptions
+    );
+
+    req.on("close", () => {
+        console.log("close");
+    });
+    req.on("error", (err) => {
+        console.log("error");
+    });
+    req.write(JSON.stringify(requestBody));
+    req.end();
+}
+
+
+//
 // Application entry point.
 //
 function main() {
